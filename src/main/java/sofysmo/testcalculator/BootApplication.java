@@ -1,4 +1,4 @@
-package sofysmo.testCalculator; /**
+package sofysmo.testcalculator; /**
  * Created by sofysmo on 08.10.16.
  */
 

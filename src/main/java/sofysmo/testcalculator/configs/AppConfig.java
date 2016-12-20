@@ -1,14 +1,13 @@
-package sofysmo.testCalculator.configs;
+package sofysmo.testcalculator.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import sofysmo.testCalculator.dao.TestCaseDao;
-import sofysmo.testCalculator.dao.TestPlanDao;
-import sofysmo.testCalculator.dao.mysql.MySqlDaoFactory;
-import sofysmo.testCalculator.dao.mysql.MySqlTestCaseDao;
-import sofysmo.testCalculator.dao.mysql.MySqlTestPlanDao;
+import sofysmo.testcalculator.dao.TestCaseDao;
+import sofysmo.testcalculator.dao.TestPlanDao;
+import sofysmo.testcalculator.dao.mysql.MySqlDaoFactory;
+import sofysmo.testcalculator.dao.mysql.MySqlTestCaseDao;
+import sofysmo.testcalculator.dao.mysql.MySqlTestPlanDao;
 
 import javax.annotation.Resource;
 import java.sql.Connection;

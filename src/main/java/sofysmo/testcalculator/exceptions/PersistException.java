@@ -1,4 +1,4 @@
-package sofysmo.testCalculator.exceptions;
+package sofysmo.testcalculator.exceptions;
 
 /**
  * Created by sofysmo on 19.12.16.

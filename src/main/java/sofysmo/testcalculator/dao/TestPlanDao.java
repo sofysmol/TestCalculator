@@ -1,6 +1,6 @@
-package sofysmo.testCalculator.dao;
+package sofysmo.testcalculator.dao;
 
-import sofysmo.testCalculator.data.database.TestPlanDB;
+import sofysmo.testcalculator.data.database.TestPlanDB;
 
 /**
  * Created by sofysmo on 19.12.16.

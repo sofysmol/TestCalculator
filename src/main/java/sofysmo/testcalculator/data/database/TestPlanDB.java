@@ -1,8 +1,6 @@
-package sofysmo.testCalculator.data.database;
+package sofysmo.testcalculator.data.database;
 
-import sofysmo.testCalculator.data.Identified;
-
-import java.util.List;
+import sofysmo.testcalculator.data.Identified;
 
 /**
  * Created by sofysmo on 19.12.16.

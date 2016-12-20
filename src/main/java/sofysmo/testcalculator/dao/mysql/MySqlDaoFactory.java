@@ -1,11 +1,8 @@
-package sofysmo.testCalculator.dao.mysql;
+package sofysmo.testcalculator.dao.mysql;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
-import sofysmo.testCalculator.dao.DaoFactory;
+import sofysmo.testcalculator.dao.DaoFactory;
 
-import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

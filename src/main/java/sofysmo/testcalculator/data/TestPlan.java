@@ -1,4 +1,4 @@
-package sofysmo.testCalculator.data;
+package sofysmo.testcalculator.data;
 
 import java.util.List;
 

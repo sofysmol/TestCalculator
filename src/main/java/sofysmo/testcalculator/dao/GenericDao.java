@@ -1,4 +1,4 @@
-package sofysmo.testCalculator.dao;
+package sofysmo.testcalculator.dao;
 
 /**
  * Created by sofysmo on 19.12.16.

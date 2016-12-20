@@ -1,8 +1,8 @@
-package sofysmo.testCalculator.dao.mysql;
+package sofysmo.testcalculator.dao.mysql;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import sofysmo.testCalculator.dao.TestCaseDao;
-import sofysmo.testCalculator.data.database.TestCaseDB;
+import sofysmo.testcalculator.dao.TestCaseDao;
+import sofysmo.testcalculator.data.database.TestCaseDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

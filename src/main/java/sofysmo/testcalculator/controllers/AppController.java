@@ -1,14 +1,13 @@
-package sofysmo.testCalculator.controllers;
+package sofysmo.testcalculator.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import sofysmo.testCalculator.dao.TestCaseDao;
-import sofysmo.testCalculator.dao.TestPlanDao;
-import sofysmo.testCalculator.data.TestCase;
-import sofysmo.testCalculator.data.TestPlan;
-import sofysmo.testCalculator.services.AppService;
+import sofysmo.testcalculator.dao.TestPlanDao;
+import sofysmo.testcalculator.data.TestCase;
+import sofysmo.testcalculator.data.TestPlan;
+import sofysmo.testcalculator.services.AppService;
 
 import java.util.ArrayList;
 import java.util.List;

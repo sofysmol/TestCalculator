@@ -1,10 +1,9 @@
-package sofysmo.testCalculator.dao.mysql;
+package sofysmo.testcalculator.dao.mysql;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import sofysmo.testCalculator.dao.GenericDao;
-import sofysmo.testCalculator.exceptions.PersistException;
+import sofysmo.testcalculator.dao.GenericDao;
+import sofysmo.testcalculator.exceptions.PersistException;
 
-import sofysmo.testCalculator.data.Identified;
+import sofysmo.testcalculator.data.Identified;
 import java.io.Serializable;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
