@@ -1,7 +1,8 @@
 package sofysmo.testCalculator.dao.mysql;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import sofysmo.testCalculator.dao.TestCaseDao;
-import sofysmo.testCalculator.data.TestCase;
+import sofysmo.testCalculator.data.database.TestCaseDB;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -12,14 +13,14 @@ import java.util.List;
 /**
  * Created by sofysmo on 19.12.16.
  */
-public class MySqlTestCaseDao extends AbstractJDBCDao<TestCase, Integer> implements TestCaseDao {
+public class MySqlTestCaseDao extends AbstractJDBCDao<TestCaseDB, Integer> implements TestCaseDao {
 
-
+    @Autowired
     public MySqlTestCaseDao(Connection connection){
         super(connection);
     }
 
-    private String tableName = "TestCase";
+    private String tableName = "TestCaseDB";
     public String getSelectQuery(){
         return "SELECT * FROM " + tableName;
     }
@@ -36,19 +37,19 @@ public class MySqlTestCaseDao extends AbstractJDBCDao<TestCase, Integer> impleme
         return "INSERT INTO " +tableName+ "(name, descr,idPlan,inp,output) VALUES (?,?,?,?,?)";
     }
 
-    public void prepareStatementForUpdate(PreparedStatement statement, TestCase object){
+    public void prepareStatementForUpdate(PreparedStatement statement, TestCaseDB object){
 
     }
 
-    public void prepareStatementForDelete(PreparedStatement statement, TestCase object){
+    public void prepareStatementForDelete(PreparedStatement statement, TestCaseDB object){
 
     }
 
-    public void prepareStatementForInsert(PreparedStatement statement, TestCase object){
+    public void prepareStatementForInsert(PreparedStatement statement, TestCaseDB object){
 
     }
 
-    protected List<TestCase> parseResultSet(ResultSet rs){
+    protected List<TestCaseDB> parseResultSet(ResultSet rs){
         return new ArrayList<>();
     }
 }

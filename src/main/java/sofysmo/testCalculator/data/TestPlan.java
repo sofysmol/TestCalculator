@@ -1,17 +1,19 @@
 package sofysmo.testCalculator.data;
 
-/**
- * Created by sofysmo on 19.12.16.
- */
-public class TestPlan extends Identified<Integer>{
-    private String name;
-    private String productName;
-    private String description;
+import java.util.List;
 
-    public TestPlan(Integer id, String name, String productName, String description) {
-        super(id);
+/**
+ * Created by sofysmo on 21.12.16.
+ */
+public class TestPlan {
+    private String name;
+    private String description;
+    private List<TestCase> tests;
+
+    public TestPlan(String name, String productName, String description, List<TestCase> tests) {
         this.name = name;
         this.description = description;
+        this.tests = tests;
     }
 
     public String getName() {
@@ -20,5 +22,9 @@ public class TestPlan extends Identified<Integer>{
 
     public String getDescription() {
         return description;
+    }
+
+    public List<TestCase> getTests() {
+        return tests;
     }
 }

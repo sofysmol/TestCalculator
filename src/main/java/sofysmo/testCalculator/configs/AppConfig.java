@@ -4,7 +4,11 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
+import sofysmo.testCalculator.dao.TestCaseDao;
+import sofysmo.testCalculator.dao.TestPlanDao;
 import sofysmo.testCalculator.dao.mysql.MySqlDaoFactory;
+import sofysmo.testCalculator.dao.mysql.MySqlTestCaseDao;
+import sofysmo.testCalculator.dao.mysql.MySqlTestPlanDao;
 
 import javax.annotation.Resource;
 import java.sql.Connection;
@@ -16,10 +20,22 @@ import java.sql.SQLException;
 @Configuration
 public class AppConfig {
     @Resource
-    private Environment env;
+    public Environment env;
 
     @Bean
     public Connection connection() throws SQLException {
-        return (new MySqlDaoFactory()).getConnection();
+        return (new MySqlDaoFactory()).getConnection(env);
     }
+
+    @Bean
+    public TestCaseDao testCaseDao() throws SQLException{
+        return new MySqlTestCaseDao(connection());
+    };
+
+    @Bean
+    public TestPlanDao testPlanDao() throws SQLException{
+        return new MySqlTestPlanDao(connection());
+    };
+    
+
 }

@@ -15,10 +15,7 @@ import java.sql.SQLException;
  */
 public class MySqlDaoFactory implements DaoFactory {
 
-    @Autowired
-    Environment env;
-
-    public Connection getConnection() throws SQLException {
+    public Connection getConnection(Environment env) throws SQLException {
         return DriverManager.getConnection(env.getProperty("spring.datasource.url"),
                 env.getProperty("spring.datasource.username"),
                 env.getProperty("spring.datasource.password"));
