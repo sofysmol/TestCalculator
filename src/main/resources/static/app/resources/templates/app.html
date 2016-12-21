@@ -1,26 +1,26 @@
-<div class="container" ng-controller="AppController as ctrl">
+<div class="container">
     <h2>Testing Calculator</h2>
     <hr>
-    <div class="panel panel-default">
+    <div class="panel panel-default" ng-model = conf>
         <div class="panel-body">
             <h3>Configuration</h3>
             <form class="form-horizontal">
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="deviceName">deviceName:</label>
+                    <label class="control-label col-sm-2" for="deviceName">DeviceName:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="deviceName" placeholder="Enter deviceName">
+                        <input type="text" value="{{deviceName}}" class="form-control" id="deviceName" placeholder="Enter deviceName">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="platformVersion">platformVersion:</label>
+                    <label class="control-label col-sm-2" for="platformVersion">PlatformVersion:</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="platformVersion" placeholder="Enter password">
+                        <input type="text" class="form-control" value="{{platformVersion}}" id="platformVersion" placeholder="Enter platformVersion">
                     </div>
                 </div>
                 <div class="form-group">
-                    <label class="control-label col-sm-2" for="path">Absolute path of apk:</label>
+                    <label class="control-label col-sm-2" for="path">Absolute pathname(apk):</label>
                     <div class="col-sm-10">
-                        <input type="text" class="form-control" id="path" placeholder="Enter path">
+                        <input type="text" value="{{path}}" class="form-control" id="path" placeholder="Enter path">
                     </div>
                 </div>
                 <div class="form-group">
@@ -34,7 +34,7 @@
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <h3>Test Plans</h3>
-                        Create
+                        <button type="button" class="btn btn-default" ng-click="ctrl.createTestPlan()">Add</button>
                         <hr>
                         <div id="custom-search-input">
                             <div class="input-group col-md-12">
@@ -47,11 +47,13 @@
                             </div>
                         </div>
                         <div id="testplans-container">
-                            <div class="panel" ng-repeat="tp in testplans | filter:search">
+                            <div class="panel panel-success" ng-repeat="tp in testplans | filter:search">
                                <div class="panel-heading panel-hover" ng-click="ctrl.openPanel($event)">
                                <h4>{{tp.name}}</h4>
                                </div>
                                 <div class="panel-body">
+                                    <button type="button" class="btn btn-default" ng-click="tp.save">Save</button>
+                                    <button type="button" class="btn btn-default" ng-click="tp.run">Run</button>
                                     <form class="form-horizontal">
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" for="desc">Description:</label>
@@ -60,11 +62,14 @@
                                             </div>
                                         </div>
                                     </form>
-                                    <div class="panel" ng-repeat="tc in tp.tests">
+                                    <button type="button" class="btn btn-default" ng-click="ctrl.createTestCase(tp)">Add testcase</button>
+                                    <div class="panel panel-default" ng-repeat="tc in tp.tests">
                                         <div class="panel-heading panel-hover" ng-click="ctrl.openPanel($event)">
                                             <h4>{{tc.name}}</h4>
                                         </div>
                                         <div class="panel-body">
+                                            <button type="button" class="btn btn-default" ng-click="tc.save">Save</button>
+                                            <button type="button" class="btn btn-default" ng-click="tc.run">Run</button>
                                             <form class="form-horizontal">
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-2" for="desctc">Description:</label>
