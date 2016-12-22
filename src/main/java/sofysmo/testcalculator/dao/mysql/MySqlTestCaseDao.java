@@ -1,6 +1,7 @@
 package sofysmo.testcalculator.dao.mysql;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.RowMapper;
 import sofysmo.testcalculator.dao.TestCaseDao;
 import sofysmo.testcalculator.data.database.TestCaseDB;
@@ -39,7 +40,10 @@ public class MySqlTestCaseDao extends AbstractJDBCDao<TestCaseDB> implements Tes
 
     @Override
     protected String queryForUpdate(TestCaseDB object) {
-        return "update from "+tableName()+" where id = "+ object.getId();
+        return "update "+tableName()+" set descr=\""+object.getDescription()+ "\", " +
+                "inp=\""+object.getInput()+"\"," +
+                "`out`=\""+object.getOutput()+"\" where id = "
+                + object.getId()+" AND idPlan="+object.getIdPlan();
     }
 
     @Override
@@ -55,11 +59,18 @@ public class MySqlTestCaseDao extends AbstractJDBCDao<TestCaseDB> implements Tes
 
     @Override
     protected String queryForDelete(TestCaseDB object){
-        return "delete from "+tableName()+" where id = "+ object.getId();
+        return "delete from "+tableName()+" where id = "+ object.getId()+
+                " AND idPlan="+object.getIdPlan();
     }
 
     @Override
     public List<TestCaseDB> getByTestPlan(Integer id){
        return jdbcTemplate.query("select * from "+tableName()+" where idPlan = " + id, getMapper());
     }
+
+    @Override
+    protected String queryForPK(TestCaseDB object){
+        return "select * from "+tableName()+" where id = "+object.getId()+" AND idPlan="+object.getIdPlan();
+    }
+
 }

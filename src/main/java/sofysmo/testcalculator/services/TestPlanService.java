@@ -34,7 +34,7 @@ public class TestPlanService {
     public TestPlan createOrUpdate(TestPlan t){
         TestPlanDB tp = toTestPlanDB(t);
         List<TestCase> tests = new ArrayList<>();
-        if(testPlanDao.getByPK(tp.getId()) == null) {
+        if(testPlanDao.getByPK(tp) == null) {
             tp = testPlanDao.persist(tp);
             Integer idPlan = tp.getId();
             t.getTests().stream().forEach((tc) ->

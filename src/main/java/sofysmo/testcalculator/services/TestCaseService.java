@@ -32,7 +32,7 @@ public class TestCaseService {
     public TestCase createOrUpdate(TestCase t, Integer idPlan) {
         TestCase tc;
         TestCaseDB tcdb = toTestCaseDB(t, idPlan);
-        if(testCaseDao.getByPK(tcdb.getId()) == null){
+        if(testCaseDao.getByPK(tcdb) == null){
             tc = create(t, idPlan);
         } else {
             tcdb = testCaseDao.update(tcdb);

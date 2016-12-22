@@ -25,6 +25,12 @@ function instantiate(Type) {
         return new Type(response.data);
     }
 }
+
+function remove(elem, arr){
+    var index = arr.indexOf(elem)
+    if(index!=-1)
+        arr.splice(index,1)
+}
 angular.module('dataServices', [])
 .factory('TestCases', function($http){
        var TestCases = function(data){
@@ -36,8 +42,13 @@ angular.module('dataServices', [])
        TestCases.createOrUpdate = function(testcase, name){
            return $http.put('/testcase', {test:testcase, nameTestPlan:name}).then(instantiate)
        };
-       TestCases.delete = function(testcase, name){
-           return $http.delete('/testcase?name='+testplan.name+"&planName="+name).then(instantiate)
+       TestCases.delete = function(testcase, testplan){
+           return $http.delete('/testcase?name='+testcase.name+"&planName="+testplan.name).then(function(response){
+                if(response.status == 200) {
+                    remove(testcase, testplan.tests)
+                }
+                else alert("Can't delete item")
+           })
        };
        return TestCases;
  }).factory('TestPlans', function($http){
@@ -50,8 +61,13 @@ angular.module('dataServices', [])
                 TestPlans.createOrUpdate = function(testplan){
                     return $http.put('/testplan', testplan).then(instantiate)
                 };
-                TestPlans.delete = function(testplan){
-                    return $http.delete('/testplan?name='+testplan.name).then(instantiate)
+                TestPlans.delete = function(testplan, testplans){
+                    return $http.delete('/testplan?name='+testplan.name).then(function(response){
+                    if(response.status == 200){
+                        remove(testplan, testplans)
+                     }
+                    else alert("Can't delete item")
+                    })
                 };
                 return TestPlans;
    })

@@ -5,6 +5,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import sofysmo.testcalculator.dao.TestPlanDao;
 import sofysmo.testcalculator.data.TestPlan;
+import sofysmo.testcalculator.data.database.TestCaseDB;
 import sofysmo.testcalculator.data.database.TestPlanDB;
 
 import javax.sql.DataSource;
@@ -39,7 +40,7 @@ public class MySqlTestPlanDao extends AbstractJDBCDao<TestPlanDB> implements Tes
     
     @Override
     protected String queryForUpdate(TestPlanDB object) {
-        return "update from "+tableName()+" where id = "+ object.getId();
+        return "update "+tableName()+" set descr=\""+object.getDescription()+"\" where id = "+ object.getId();
     }
 
     @Override
@@ -51,6 +52,11 @@ public class MySqlTestPlanDao extends AbstractJDBCDao<TestPlanDB> implements Tes
     @Override
     protected String queryForDelete(TestPlanDB object){
         return "delete from "+tableName()+" where id = "+ object.getId();
+    }
+
+    @Override
+    protected String queryForPK(TestPlanDB object){
+        return "select * from "+tableName()+" where id = "+object.getId();
     }
 
 }

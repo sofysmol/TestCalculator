@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import sofysmo.testcalculator.data.TestPlan;
+import sofysmo.testcalculator.data.respones.SimpleResponse;
 import sofysmo.testcalculator.services.TestPlanService;
 
 import java.util.List;
@@ -31,15 +32,15 @@ public class TestPlanController {
     }
 
     @RequestMapping(value = "/testplan", method = {RequestMethod.DELETE})
-    ResponseEntity<String> deleteTestPlan(@RequestParam String name){
+    ResponseEntity<SimpleResponse> deleteTestPlan(@RequestParam String name){
         serviceTP.delete(name);
-        return new ResponseEntity<String>("Deleted testplan", HttpStatus.OK);
+        return new ResponseEntity<SimpleResponse>(new SimpleResponse("Deleted testplan", 200), HttpStatus.OK);
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR)
-    ResponseEntity<String> handleException(Exception e){
+    ResponseEntity<SimpleResponse> handleException(Exception e){
         logger.error("Exception during execution:", e);
-        return new ResponseEntity<String>("Server error", HttpStatus.INTERNAL_SERVER_ERROR);
+        return new ResponseEntity<SimpleResponse>(new SimpleResponse("Server error",500), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

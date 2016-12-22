@@ -17,7 +17,7 @@ import java.util.List;
 /**
  * Created by sofysmo on 19.12.16.
  */
-public abstract class AbstractJDBCDao <T extends Identified<Integer>> implements GenericDao<T, Integer> {
+public abstract class AbstractJDBCDao <T extends Identified<Integer>> implements GenericDao<T> {
 
     private DataSource dataSource;
     protected JdbcTemplate jdbcTemplate;
@@ -32,20 +32,21 @@ public abstract class AbstractJDBCDao <T extends Identified<Integer>> implements
     protected abstract String queryForUpdate(T object);
     protected abstract String queryForPersist(T object);
     protected abstract String queryForDelete(T object);
+    protected abstract String queryForPK(T object);
     protected abstract String tableName();
 
     /** Создает новую запись, соответствующую объекту object */
     @Override
     public T persist(T object){
         jdbcTemplate.update(queryForPersist(object));
-        return getByPK(object.getId());
+        return getByPK(object);
     }
 
 
     /** Возвращает объект соответствующий записи с первичным ключом key или null */
     @Override
-    public T getByPK(Integer key){
-        List<T> res = jdbcTemplate.query("select * from "+tableName()+" where id = "+ key, getMapper());
+    public T getByPK(T object){
+        List<T> res = jdbcTemplate.query(queryForPK(object), getMapper());
         if(res.size()>0) return res.get(0);
         else return  null;
     }
@@ -54,7 +55,7 @@ public abstract class AbstractJDBCDao <T extends Identified<Integer>> implements
     @Override
     public T update(T object){
         jdbcTemplate.update(queryForUpdate(object));
-        return getByPK(object.getId());
+        return getByPK(object);
     }
 
     /** Удаляет запись об объекте из базы данных */

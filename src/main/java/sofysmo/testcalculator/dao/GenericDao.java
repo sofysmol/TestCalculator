@@ -10,15 +10,15 @@ import java.util.List;
 /**
  * Унифицированный интерфейс управления персистентным состоянием объектов
  * @param <T> тип объекта персистенции
- * @param <PK> тип первичного ключа
+
  */
-public interface GenericDao<T, PK> {
+public interface GenericDao<T> {
 
     /** Создает новую запись, соответствующую объекту object */
     public T persist(T object);
 
     /** Возвращает объект соответствующий записи с первичным ключом key или null */
-    public T getByPK(PK key);
+    public T getByPK(T object);
 
     /** Сохраняет состояние объекта group в базе данных */
     public T update(T object);
