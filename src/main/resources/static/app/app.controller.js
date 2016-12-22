@@ -1,7 +1,7 @@
 /**
  * Created by user on 8/28/16.
  */
- function AppController($scope, otcDynamic, testPlans){
+ function AppController($scope, otcDynamic, testPlans, TestCases, TestPlans){
     var self = this
     $scope.conf = {
         deviceName:"",
@@ -14,31 +14,45 @@
         this.description = description;
         this.tests = tests
       }
-      save() {
-      }
-      run(){
-      }
     }
     class TestCase {
       constructor(name, description,input, output) {
-              this.name = name;
-              this.description = description;
-              this.input = input
-              this.output = output
-            }
-            save() {
-            }
-            run(){
+              this.name = name
+              this.description = description
+              this.inp = input
+              this.out = output
             }
     }
     $scope.testplans = testPlans
     self.createTestPlan = function(){
         var name = window.prompt("Enter testplans name...", "New TestPlan")
-        $scope.testplans.push(new TestPlan(name, "",[]))
+        var tp = new TestPlan(name, "",[])
+        $scope.testplans.push(tp)
+        TestPlans.createOrUpdate(tp)
     }
     self.createTestCase = function(tp){
         var name = window.prompt("Enter testcases name...", "New test")
-        tp.tests.push(new TestCase(name, "","",""))
+        var tc = new TestCase(name, "","","")
+        tp.tests.push(tc)
+        TestCases.createOrUpdate(tc, tp.name)
+    }
+    self.saveTestCase = function(tc){
+        TestCases.createOrUpdate(tc)
+    }
+    self.deleteTestCase = function(tc){
+            TestCases.delete(tc)
+        }
+    self.runTestCase = function(tc){
+
+    }
+    self.saveTestPlan = function(tp){
+         TestPlans.createOrUpdate(tp)
+    }
+    self.deleteTestPlan = function(tp){
+             TestPlans.delete(tp)
+        }
+    self.runTestPlan = function(tp){
+
     }
     self.openPanel = function (event) {
                 var body = $(event.currentTarget).siblings(".panel-body");

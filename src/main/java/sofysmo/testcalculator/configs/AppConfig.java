@@ -3,6 +3,8 @@ package sofysmo.testcalculator.configs;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import sofysmo.testcalculator.dao.TestCaseDao;
 import sofysmo.testcalculator.dao.TestPlanDao;
 import sofysmo.testcalculator.dao.mysql.MySqlDaoFactory;
@@ -22,18 +24,17 @@ public class AppConfig {
     public Environment env;
 
     @Bean
-    public Connection connection() throws SQLException {
-        return (new MySqlDaoFactory()).getConnection(env);
+    public DriverManagerDataSource dataSource(){
+        return (new MySqlDaoFactory()).getDataSource(env);
     }
-
     @Bean
     public TestCaseDao testCaseDao() throws SQLException{
-        return new MySqlTestCaseDao(connection());
+        return new MySqlTestCaseDao(dataSource());
     };
 
     @Bean
     public TestPlanDao testPlanDao() throws SQLException{
-        return new MySqlTestPlanDao(connection());
+        return new MySqlTestPlanDao(dataSource());
     };
     
 

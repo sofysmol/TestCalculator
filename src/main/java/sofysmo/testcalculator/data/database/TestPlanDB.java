@@ -9,8 +9,8 @@ public class TestPlanDB extends Identified<Integer> {
     private String name;
     private String description;
 
-    public TestPlanDB(Integer id, String name, String description) {
-        super(id);
+    public TestPlanDB(String name, String description) {
+        super(name.hashCode());
         this.name = name;
         this.description = description;
     }

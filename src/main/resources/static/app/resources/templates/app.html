@@ -52,8 +52,9 @@
                                <h4>{{tp.name}}</h4>
                                </div>
                                 <div class="panel-body">
-                                    <button type="button" class="btn btn-default" ng-click="tp.save">Save</button>
-                                    <button type="button" class="btn btn-default" ng-click="tp.run">Run</button>
+                                    <button type="button" class="btn btn-default" ng-click="ctrl.saveTestPlan(tp)">Save</button>
+                                    <button type="button" class="btn btn-default" ng-click="ctrl.deleteTestPlan(tp)">Delete</button>
+                                    <button type="button" class="btn btn-default" ng-click="ctrl.runTestPlan(tp)">Run</button>
                                     <form class="form-horizontal">
                                         <div class="form-group">
                                             <label class="control-label col-sm-2" for="desc">Description:</label>
@@ -68,8 +69,9 @@
                                             <h4>{{tc.name}}</h4>
                                         </div>
                                         <div class="panel-body">
-                                            <button type="button" class="btn btn-default" ng-click="tc.save">Save</button>
-                                            <button type="button" class="btn btn-default" ng-click="tc.run">Run</button>
+                                            <button type="button" class="btn btn-default" ng-click="ctrl.saveTestCase(tc)">Save</button>
+                                            <button type="button" class="btn btn-default" ng-click="ctrl.deleteTestCase(tc)">Delete</button>
+                                            <button type="button" class="btn btn-default" ng-click="ctrl.runTestCase(tc)">Run</button>
                                             <form class="form-horizontal">
                                                 <div class="form-group">
                                                     <label class="control-label col-sm-2" for="desctc">Description:</label>

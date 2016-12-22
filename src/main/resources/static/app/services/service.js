@@ -32,7 +32,13 @@ angular.module('dataServices', [])
        };
        TestCases.query = function() {
            return $http.get('/testcases').then(makeArray(TestCases));
-       }
+       };
+       TestCases.createOrUpdate = function(testcase, name){
+           return $http.put('/testcase', {test:testcase, nameTestPlan:name}).then(instantiate)
+       };
+       TestCases.delete = function(testcase, name){
+           return $http.delete('/testcase?name='+testplan.name+"&planName="+name).then(instantiate)
+       };
        return TestCases;
  }).factory('TestPlans', function($http){
                 var TestPlans = function(data){
@@ -40,6 +46,12 @@ angular.module('dataServices', [])
                 };
                 TestPlans.query = function() {
                     return $http.get('/testplans').then(makeArray(TestPlans));
-                }
+                };
+                TestPlans.createOrUpdate = function(testplan){
+                    return $http.put('/testplan', testplan).then(instantiate)
+                };
+                TestPlans.delete = function(testplan){
+                    return $http.delete('/testplan?name='+testplan.name).then(instantiate)
+                };
                 return TestPlans;
    })

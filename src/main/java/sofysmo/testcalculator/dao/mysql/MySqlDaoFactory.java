@@ -1,6 +1,7 @@
 package sofysmo.testcalculator.dao.mysql;
 
 import org.springframework.core.env.Environment;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import sofysmo.testcalculator.dao.DaoFactory;
 
 import java.sql.Connection;
@@ -12,9 +13,11 @@ import java.sql.SQLException;
  */
 public class MySqlDaoFactory implements DaoFactory {
 
-    public Connection getConnection(Environment env) throws SQLException {
-        return DriverManager.getConnection(env.getProperty("spring.datasource.url"),
+    public DriverManagerDataSource getDataSource(Environment env){
+        DriverManagerDataSource ds = new DriverManagerDataSource(env.getProperty("spring.datasource.url"),
                 env.getProperty("spring.datasource.username"),
                 env.getProperty("spring.datasource.password"));
+        ds.setDriverClassName(env.getProperty("spring.datasource.driverClassName"));
+        return ds;
     }
 }

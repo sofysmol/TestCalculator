@@ -12,20 +12,20 @@ import java.util.List;
  * @param <T> тип объекта персистенции
  * @param <PK> тип первичного ключа
  */
-public interface GenericDao<T, PK extends Serializable> {
+public interface GenericDao<T, PK> {
 
     /** Создает новую запись, соответствующую объекту object */
-    public T persist(T object)  throws SQLException;
+    public T persist(T object);
 
     /** Возвращает объект соответствующий записи с первичным ключом key или null */
-    public T getByPK(PK key) throws SQLException;
+    public T getByPK(PK key);
 
     /** Сохраняет состояние объекта group в базе данных */
-    public void update(T object) throws SQLException;
+    public T update(T object);
 
     /** Удаляет запись об объекте из базы данных */
-    public void delete(T object) throws SQLException;
+    public void delete(T object);
 
     /** Возвращает список объектов соответствующих всем записям в базе данных */
-    public List<T> getAll() throws SQLException;
+    public List<T> getAll();
 }

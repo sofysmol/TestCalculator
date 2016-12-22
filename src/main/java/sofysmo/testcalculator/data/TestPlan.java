@@ -1,5 +1,9 @@
 package sofysmo.testcalculator.data;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -10,10 +14,14 @@ public class TestPlan {
     private String description;
     private List<TestCase> tests;
 
-    public TestPlan(String name, String productName, String description, List<TestCase> tests) {
+    @JsonCreator
+    public TestPlan(@JsonProperty("name") String name,
+                    @JsonProperty("description") String description,
+                    @JsonProperty("tests") List<TestCase> tests) {
         this.name = name;
         this.description = description;
-        this.tests = tests;
+        if(tests == null) this.tests = new ArrayList<>();
+        else this.tests = tests;
     }
 
     public String getName() {

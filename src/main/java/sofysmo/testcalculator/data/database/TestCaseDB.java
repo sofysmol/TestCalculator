@@ -12,8 +12,8 @@ public class TestCaseDB extends Identified<Integer> {
     private String output;
     private Integer idPlan;
 
-    public TestCaseDB(Integer id, String name, String description, String input, String output, Integer idPlan) {
-        super(id);
+    public TestCaseDB(String name, String description, String input, String output, Integer idPlan) {
+        super(name.hashCode());
         this.name = name;
         this.description = description;
         this.input = input;
