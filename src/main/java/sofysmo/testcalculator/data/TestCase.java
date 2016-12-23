@@ -9,25 +9,25 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class TestCase {
     private String name;
     private String description;
-    private String inp;
-    private String out;
+    private String input;
+    private String output;
 
     @JsonCreator
     public TestCase(@JsonProperty("name") String name,
                     @JsonProperty("description") String description,
-                    @JsonProperty("inp") String inp,
-                    @JsonProperty("out") String out) {
+                    @JsonProperty("input") String input,
+                    @JsonProperty("output") String output) {
         this.name = name;
         this.description = description;
-        this.inp = inp;
-        this.out = out;
+        this.input = input;
+        this.output = output;
     }
 
     public TestCase(TestCase t){
         this.name = t.getName();
         this.description = t.getDescription();
-        this.inp = t.getInput();
-        this.out = t.getOutput();
+        this.input = t.getInput();
+        this.output = t.getOutput();
     }
 
     public String getName() {
@@ -39,10 +39,10 @@ public class TestCase {
     }
 
     public String getInput() {
-        return inp;
+        return input;
     }
 
     public String getOutput() {
-        return out;
+        return output;
     }
 }

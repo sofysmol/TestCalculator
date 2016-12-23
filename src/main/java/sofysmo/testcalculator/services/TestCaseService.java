@@ -1,7 +1,10 @@
 package sofysmo.testcalculator.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import sofysmo.testcalculator.controllers.TestPlanController;
 import sofysmo.testcalculator.dao.TestCaseDao;
 import sofysmo.testcalculator.data.TestCase;
 import sofysmo.testcalculator.data.TestCase;
@@ -17,6 +20,8 @@ import java.util.stream.Collectors;
 @Service
 public class TestCaseService {
     private TestCaseDao testCaseDao;
+
+    private Logger logger = LoggerFactory.getLogger(TestCaseService.class);
 
     @Autowired
     public TestCaseService(TestCaseDao testCaseDao){

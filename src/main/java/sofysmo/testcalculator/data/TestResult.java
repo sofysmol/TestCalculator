@@ -8,13 +8,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  */
 public class TestResult {
     Boolean result;
+    String message;
 
     @JsonCreator
-    public TestResult(@JsonProperty("result")Boolean result) {
+    public TestResult(@JsonProperty("result")Boolean result, @JsonProperty("message") String message) {
         this.result = result;
+        this.message = message;
     }
 
     public Boolean getResult() {
         return result;
+    }
+
+    public String getMessage() {
+        return message;
     }
 }

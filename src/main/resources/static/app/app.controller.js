@@ -4,12 +4,28 @@
 
  function AppController($scope, otcDynamic, testPlans, TestCases, TestPlans, Tester){
     var self = this
+    $scope.loading = false
     $scope.conf = {
         deviceName:"",
         platformVersion:"",
         path:""
     }
-
+    angular.forEach(testPlans, function(testPlan, index){
+                        testPlan.tested = false;
+                        angular.forEach(testPlans.tests, function(test, index){
+                            test.tested = false
+                        })
+                    })
+    var loading={
+             show:function(){
+                $scope.loading=true
+                $scope.$apply
+             },
+             hide:function(){
+                $scope.loading=false
+                $scope.$apply
+             }
+        }
     class TestPlan {
       constructor(name, description,tests) {
         this.name = name;
@@ -58,8 +74,13 @@
             TestCases.delete(tc, tp)
         }
     self.runTestCase = function(tc){
+        loading.show()
         var config = angular.fromJson($scope.config)
-        var result = Tester.runTestCase(tc,config)
+        var result = Tester.runTestCase(tc,config, function(res){
+                                                        tc.tested = true
+                                                        tc.res = res
+                                                        loading.hide()
+                                                     },loading.hide)
     }
     self.saveTestPlan = function(tp){
          TestPlans.createOrUpdate(tp)
@@ -69,9 +90,21 @@
              TestPlans.delete(tp, $scope.testplans)
         }
     self.runTestPlan = function(tp){
-        var config = angular.fromJson($scope.config)
-
-
+        loading.show()
+         var config = angular.fromJson($scope.config)
+         Tester.runTestPlan(tp,config, function(results){
+                                              tp.tested = true
+                                              tp.res={result:true}
+                                              var count = 0
+                                              angular.forEach(tp.tests, function(test, index){
+                                                   test.tested = true
+                                                   test.res = results[index]
+                                                   if(!results[index].result) tp.res={result:false}
+                                                   else count++
+                                              })
+                                              tp.res.message = ""+count+"\\"+ tp.tests.length
+                                              loading.hide()
+                                            }, loading.hide)
     }
     self.openPanel = function (event) {
                 var body = $(event.currentTarget).siblings(".panel-body");

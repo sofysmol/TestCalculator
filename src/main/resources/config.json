@@ -4,5 +4,20 @@
   "path": "/home/sofysmo/IdeaProjects/TestCalculator/src/test/resourses/Calculator.apk",
   "input":"com.meizu.flyme.calculator:id/edit_text",
   "output":"com.meizu.flyme.calculator:id/edit_text",
-  "button":"com.meizu.flyme.calculator:id/clear"
+  "button":"com.meizu.flyme.calculator:id/clear",
+  "k1":"com.meizu.flyme.calculator:id/digit1",
+  "k2":"com.meizu.flyme.calculator:id/digit2",
+  "k3":"com.meizu.flyme.calculator:id/digit3",
+  "k4":"com.meizu.flyme.calculator:id/digit4",
+  "k5":"com.meizu.flyme.calculator:id/digit5",
+  "k6":"com.meizu.flyme.calculator:id/digit6",
+  "k7":"com.meizu.flyme.calculator:id/digit7",
+  "k8":"com.meizu.flyme.calculator:id/digit8",
+  "k9":"com.meizu.flyme.calculator:id/digit9",
+  "k0":"com.meizu.flyme.calculator:id/digit0", 
+  "plus":"com.meizu.flyme.calculator:id/plus",
+  "minus":"com.meizu.flyme.calculator:id/minus",
+  "mul":"com.meizu.flyme.calculator:id/mul",
+  "div":"com.meizu.flyme.calculator:id/div",
+  "clear":"com.meizu.flyme.calculator:id/clear_simple"
 }

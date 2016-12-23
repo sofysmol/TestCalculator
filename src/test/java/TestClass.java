@@ -19,7 +19,7 @@ import java.util.List;
 ///usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin
 public class TestClass {
     private AppiumDriver<AndroidElement> driver;
-    @Before
+    //@Before
     public void setUp() throws Exception {
         File app = new File("/home/sofysmo/IdeaProjects/TestCalculator/src/test/resourses", "Calculator.apk");
         DesiredCapabilities capabilities = new DesiredCapabilities();
@@ -29,7 +29,7 @@ public class TestClass {
         driver = new AndroidDriver<>(new URL("http://127.0.0.1:4723/wd/hub"), capabilities);
     }
 
-    @After
+    //@After
     public void tearDown() throws Exception {
         driver.quit();
     }
@@ -38,7 +38,7 @@ public class TestClass {
     public void addContact(){
         //MobileElement input = driver.findElement(By.id("com.meizu.flyme.calculator:id/edit_text"));
         MobileElement button = driver.findElement(By.id("com.meizu.flyme.calculator:id/clear"));
-        button.click();
+        //button.click();
     }
 
 }

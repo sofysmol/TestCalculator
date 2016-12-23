@@ -4,8 +4,11 @@ import io.appium.java_client.AppiumDriver;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.AndroidElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.stereotype.Service;
+import sofysmo.testcalculator.controllers.TestPlanController;
 import sofysmo.testcalculator.data.TestCase;
 import sofysmo.testcalculator.data.TestConfig;
 import sofysmo.testcalculator.data.TestPlan;
@@ -23,6 +26,9 @@ import java.util.stream.Collectors;
  */
 @Service
 public class RunTestService {
+
+    private Logger logger = LoggerFactory.getLogger(RunTestService.class);
+
     public TestResult runTestCase(TestCase test, TestConfig config) throws Exception{
         Tester tester = new Tester();
         try{

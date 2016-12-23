@@ -79,15 +79,17 @@ angular.module('dataServices', [])
         var ResultTest = function(data){
               angular.copy(data, this);
         };
-        Tester.runTestCase = function(tc,config) {
+        Tester.runTestCase = function(tc,config, callback, error) {
               return $http.post('/runtestcase', {
                 config:config,
-                testCase:tc}).then(instantiate(ResultTest));
+                testCase:tc}).then(function(response){callback(instantiate(ResultTest)(response));},
+                                    function(response){error(); alert("Error:"+response.data.message);})
         };
-        Tester.runTestPlan = function(tp){
+        Tester.runTestPlan = function(tp,config, callback, error){
                     return $http.post('/runtestplan', {
                      config:config,
-                     testTestPlan:tp}).then(makeArray(ResultTest))
+                     testPlan:tp}).then(function(response){callback(makeArray(ResultTest)(response));},
+                                    function(response){error(); alert("Error:"+response.data.message);})
                 };
         return Tester;
 })
