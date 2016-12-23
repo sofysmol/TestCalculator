@@ -40,7 +40,7 @@ angular.module('dataServices', [])
            return $http.get('/testcases').then(makeArray(TestCases));
        };
        TestCases.createOrUpdate = function(testcase, name){
-           return $http.put('/testcase', {test:testcase, nameTestPlan:name}).then(instantiate)
+           return $http.put('/testcase', {test:testcase, nameTestPlan:name}).then(instantiate(TestCases))
        };
        TestCases.delete = function(testcase, testplan){
            return $http.delete('/testcase?name='+testcase.name+"&planName="+testplan.name).then(function(response){
@@ -51,7 +51,8 @@ angular.module('dataServices', [])
            })
        };
        return TestCases;
- }).factory('TestPlans', function($http){
+ })
+.factory('TestPlans', function($http){
                 var TestPlans = function(data){
                     angular.copy(data, this);
                 };
@@ -59,7 +60,7 @@ angular.module('dataServices', [])
                     return $http.get('/testplans').then(makeArray(TestPlans));
                 };
                 TestPlans.createOrUpdate = function(testplan){
-                    return $http.put('/testplan', testplan).then(instantiate)
+                    return $http.put('/testplan', testplan).then(instantiate(TestPlans))
                 };
                 TestPlans.delete = function(testplan, testplans){
                     return $http.delete('/testplan?name='+testplan.name).then(function(response){
@@ -71,3 +72,22 @@ angular.module('dataServices', [])
                 };
                 return TestPlans;
    })
+.factory('Tester', function($http){
+        var Tester = function(data){
+              angular.copy(data, this);
+        };
+        var ResultTest = function(data){
+              angular.copy(data, this);
+        };
+        Tester.runTestCase = function(tc,config) {
+              return $http.post('/runtestcase', {
+                config:config,
+                testCase:tc}).then(instantiate(ResultTest));
+        };
+        Tester.runTestPlan = function(tp){
+                    return $http.post('/runtestplan', {
+                     config:config,
+                     testTestPlan:tp}).then(makeArray(ResultTest))
+                };
+        return Tester;
+})

@@ -2,7 +2,7 @@
  * Created by user on 8/28/16.
  */
 
- function AppController($scope, otcDynamic, testPlans, TestCases, TestPlans){
+ function AppController($scope, otcDynamic, testPlans, TestCases, TestPlans, Tester){
     var self = this
     $scope.conf = {
         deviceName:"",
@@ -58,7 +58,8 @@
             TestCases.delete(tc, tp)
         }
     self.runTestCase = function(tc){
-
+        var config = angular.fromJson($scope.config)
+        var result = Tester.runTestCase(tc,config)
     }
     self.saveTestPlan = function(tp){
          TestPlans.createOrUpdate(tp)
@@ -68,12 +69,9 @@
              TestPlans.delete(tp, $scope.testplans)
         }
     self.runTestPlan = function(tp){
-        var cfg = $("#cfg")[0]
-        var files = cfg.files;
-        if (files.length)
-        {
-            //$http.get(files[0].name).then
-        }
+        var config = angular.fromJson($scope.config)
+
+
     }
     self.openPanel = function (event) {
                 var body = $(event.currentTarget).siblings(".panel-body");

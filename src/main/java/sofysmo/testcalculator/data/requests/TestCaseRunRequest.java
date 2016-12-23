@@ -1,5 +1,7 @@
 package sofysmo.testcalculator.data.requests;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import sofysmo.testcalculator.data.TestCase;
 import sofysmo.testcalculator.data.TestConfig;
 import sofysmo.testcalculator.data.TestPlan;
@@ -12,7 +14,9 @@ public class TestCaseRunRequest {
     private TestConfig config;
     private TestCase testCase;
 
-    public TestCaseRunRequest(TestConfig config, TestCase testCase) {
+    @JsonCreator
+    public TestCaseRunRequest(@JsonProperty("config") TestConfig config,
+                              @JsonProperty("testCase") TestCase testCase) {
         this.config = config;
         this.testCase = testCase;
     }

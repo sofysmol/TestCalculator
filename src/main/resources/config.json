@@ -1,0 +1,8 @@
+{
+  "deviceName": "Meizu m2",
+  "platformVersion": "5.1",
+  "path": "/home/sofysmo/IdeaProjects/TestCalculator/src/test/resourses/Calculator.apk",
+  "input":"com.meizu.flyme.calculator:id/edit_text",
+  "output":"com.meizu.flyme.calculator:id/edit_text",
+  "button":"com.meizu.flyme.calculator:id/clear"
+}
