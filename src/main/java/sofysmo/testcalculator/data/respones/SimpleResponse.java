@@ -2,7 +2,6 @@ package sofysmo.testcalculator.data.respones;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.sun.xml.internal.ws.api.message.Packet;
 
 /**
  * Created by sofysmo on 22.12.16.
