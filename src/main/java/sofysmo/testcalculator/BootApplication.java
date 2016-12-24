@@ -12,7 +12,6 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 @ComponentScan
 @EnableAutoConfiguration
-//@SpringBootApplication
 public class BootApplication {
 
     public static void main(String[] args) {
