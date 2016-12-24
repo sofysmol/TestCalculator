@@ -49,7 +49,7 @@ public class TestPlanService {
             Integer idPlan = tp.getId();
             testCaseService.deleteAllByIdPlan(idPlan);
             t.getTests().stream().forEach((tc) ->
-                    tests.add(testCaseService.create(tc, idPlan)));
+                    tests.add(testCaseService.createOrUpdate(tc, idPlan)));
         }
         return toTestPlan(tp, tests);
     }
